@@ -324,8 +324,11 @@ var List = function(id, options, values) {
                 for(var j in columns) {
                     if(values.hasOwnProperty(j) && columns[j] !== null) {
                         text = (values[j] != null) ? values[j].toString().toLowerCase() : "";
-                        if ((searchString !== "") && (text.search(searchString) > -1)) {
-                            found = true;
+                        if (searchString !== "") {
+                            var reg = new RegExp(searchString, 'gim');
+                            if (text.match(reg)) {
+                                found = true;
+                            }
                         }
                     }
                 }
